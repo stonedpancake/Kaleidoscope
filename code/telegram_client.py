@@ -6,8 +6,8 @@ from kaleidoscope import PhotoFilters
 TOKEN = "1703000496:AAHm-ZCPVAp_T5eZ4ygyNewfXKUvqnKX3Ww"
 bot = telebot.TeleBot(TOKEN)
 
-
 effect = 'Sepia'
+advanced_settings = ''
 
 
 @bot.message_handler(commands=['start', 'help'])
@@ -18,8 +18,14 @@ def send_welcome(message):
 @bot.message_handler(commands=['effects'])
 def pick_the_effect(message):
     keyboard = telebot.types.ReplyKeyboardMarkup(True)
-    keyboard.row('Sepia', 'Negative')
+    keyboard.row('Sepia', 'Negative', 'Contrast')
+    keyboard.row('Gray_Scale', 'White_Black', 'Bright')
     bot.send_message(message.chat.id, 'Got it', reply_markup=keyboard)  # WIRED
+
+
+@bot.message_handler(commands=['advanced'])
+def advanced(message):
+    pass  # change brightness and coefficient
 
 
 @bot.message_handler(content_types=["text"])

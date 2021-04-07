@@ -3,7 +3,7 @@ from PIL import Image
 
 class PhotoFilters:
 
-    def bright(self, source_name, result_name, brightness):
+    def bright(self, source_name, result_name, brightness=0.5):
         source = Image.open(source_name)
         result = Image.new('RGB', source.size)
         for x in range(source.size[0]):
@@ -27,7 +27,7 @@ class PhotoFilters:
                 result.putpixel((x, y), (255 - r, 255 - g, 255 - b))
         result.save(result_name, "JPEG")
 
-    def white_black(self, source_name, result_name, brightness):
+    def white_black(self, source_name, result_name, brightness=1.2):
         source = Image.open(source_name)
         result = Image.new('RGB', source.size)
         separator = 255 / brightness / 2 * 3
@@ -63,7 +63,7 @@ class PhotoFilters:
                 result.putpixel((x, y), (red, green, blue))
         result.save(result_name, "JPEG")
 
-    def contrast(self, source_name, result_name, coefficient):
+    def contrast(self, source_name, result_name, coefficient=2):
         source = Image.open(source_name)
         result = Image.new('RGB', source.size)
 
