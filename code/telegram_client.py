@@ -20,6 +20,16 @@ def pick_the_effect(message):
     keyboard = telebot.types.ReplyKeyboardMarkup(True)
     keyboard.row('Sepia', 'Negative', 'Contrast')
     keyboard.row('Gray_Scale', 'White_Black', 'Bright')
+    keyboard.row('Emboss', 'Contour', 'Edges')
+    keyboard.row('Brannan', 'Brooklyn', 'Clarendon')
+    keyboard.row('Css', 'Earlybird', 'Gingham')
+    keyboard.row('Hudson', 'Inkwell', 'Kelvin')
+    keyboard.row('Lark', 'Lofi', 'Maven')
+    keyboard.row('Mayfair', 'Moon', 'Nashville')
+    keyboard.row('Perpetua', 'Reyes', 'Rise')
+    keyboard.row('Slumber', 'Stinson', 'Toaster')
+    keyboard.row('Util', 'Valencia', 'Walden')
+    keyboard.row('Willow', 'Xpro2', 'Aden')
     bot.send_message(message.chat.id, 'Got it', reply_markup=keyboard)  # WIRED
 
 

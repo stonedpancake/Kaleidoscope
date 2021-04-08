@@ -1,4 +1,8 @@
-from PIL import Image
+import cv2
+import numpy as np
+from PIL import Image, ImageFilter
+from scipy.interpolate import UnivariateSpline
+import pilgram
 
 
 class PhotoFilters:
@@ -89,3 +93,154 @@ class PhotoFilters:
                 result.putpixel((x, y), (palette[r], palette[g], palette[b]))
 
         result.save(result_name, "JPEG")
+
+    def emboss(self, source_name, result_name):
+        img = Image.open(source_name)
+        ing_emboss = img.filter(ImageFilter.EMBOSS)
+        ing_emboss.save(result_name)
+
+    def contour(self, source_name, result_name):
+        img = Image.open(source_name)
+        ing_emboss = img.filter(ImageFilter.CONTOUR)
+        ing_emboss.save(result_name)
+
+    def edges(self, source_name, result_name):
+        img = Image.open(source_name)
+        ing_emboss = img.filter(ImageFilter.FIND_EDGES)
+        ing_emboss.save(result_name)
+
+    def spreadLookupTable(self, x, y):  # NOT AN EFFECT (SUPPORT FUNC)
+        spline = UnivariateSpline(x, y)
+        return spline(range(256))
+
+    def warm_image(self, source_name, result_name):
+        increaseLookupTable = self.spreadLookupTable([0, 64, 128, 256], [0, 80, 160, 256])
+        decreaseLookupTable = self.spreadLookupTable([0, 64, 128, 256], [0, 50, 100, 256])
+        red_channel, green_channel, blue_channel = cv2.split(source_name)
+        red_channel = cv2.LUT(red_channel, increaseLookupTable).astype(np.uint8)
+        blue_channel = cv2.LUT(blue_channel, decreaseLookupTable).astype(np.uint8)
+
+        res_img = Image.open(cv2.merge((red_channel, green_channel, blue_channel)))
+        res_img.save(result_name)
+
+    def cold_image(self, source_name, result_name):
+        increaseLookupTable = self.spreadLookupTable([0, 64, 128, 256], [0, 80, 160, 256])
+        decreaseLookupTable = self.spreadLookupTable([0, 64, 128, 256], [0, 50, 100, 256])
+        red_channel, green_channel, blue_channel = cv2.split(source_name)
+        red_channel = cv2.LUT(red_channel, decreaseLookupTable).astype(np.uint8)
+        blue_channel = cv2.LUT(blue_channel, increaseLookupTable).astype(np.uint8)
+
+        res_img = Image.open(cv2.merge((red_channel, green_channel, blue_channel)))
+        res_img.save(result_name)
+
+    def clarendon(self, source_name, result_name):
+        res_img = pilgram.clarendon(Image.open(source_name))
+        res_img.save(result_name)
+
+    def _1977(self, source_name, result_name):
+        res_img = pilgram._1977(Image.open(source_name))
+        res_img.save(result_name)
+
+    def reyes(self, source_name, result_name):
+        res_img = pilgram.reyes(Image.open(source_name))
+        res_img.save(result_name)
+
+    def aden(self, source_name, result_name):
+        res_img = pilgram.aden(Image.open(source_name))
+        res_img.save(result_name)
+
+    def brannan(self, source_name, result_name):
+        res_img = pilgram.brannan(Image.open(source_name))
+        res_img.save(result_name)
+
+    def brooklyn(self, source_name, result_name):
+        res_img = pilgram.brooklyn(Image.open(source_name))
+        res_img.save(result_name)
+
+    def css(self, source_name, result_name):
+        res_img = pilgram.css(Image.open(source_name))
+        res_img.save(result_name)
+
+    def earlybird(self, source_name, result_name):
+        res_img = pilgram.earlybird(Image.open(source_name))
+        res_img.save(result_name)
+
+    def gingham(self, source_name, result_name):
+        res_img = pilgram.gingham(Image.open(source_name))
+        res_img.save(result_name)
+
+    def hudson(self, source_name, result_name):
+        res_img = pilgram.hudson(Image.open(source_name))
+        res_img.save(result_name)
+
+    def inkwell(self, source_name, result_name):
+        res_img = pilgram.inkwell(Image.open(source_name))
+        res_img.save(result_name)
+
+    def kelvin(self, source_name, result_name):
+        res_img = pilgram.kelvin(Image.open(source_name))
+        res_img.save(result_name)
+
+    def lark(self, source_name, result_name):
+        res_img = pilgram.lark(Image.open(source_name))
+        res_img.save(result_name)
+
+    def lofi(self, source_name, result_name):
+        res_img = pilgram.lofi(Image.open(source_name))
+        res_img.save(result_name)
+
+    def maven(self, source_name, result_name):
+        res_img = pilgram.maven(Image.open(source_name))
+        res_img.save(result_name)
+
+    def mayfair(self, source_name, result_name):
+        res_img = pilgram.mayfair(Image.open(source_name))
+        res_img.save(result_name)
+
+    def moon(self, source_name, result_name):
+        res_img = pilgram.moon(Image.open(source_name))
+        res_img.save(result_name)
+
+    def nashville(self, source_name, result_name):
+        res_img = pilgram.nashville(Image.open(source_name))
+        res_img.save(result_name)
+
+    def perpetua(self, source_name, result_name):
+        res_img = pilgram.perpetua(Image.open(source_name))
+        res_img.save(result_name)
+
+    def rise(self, source_name, result_name):
+        res_img = pilgram.rise(Image.open(source_name))
+        res_img.save(result_name)
+
+    def slumber(self, source_name, result_name):
+        res_img = pilgram.slumber(Image.open(source_name))
+        res_img.save(result_name)
+
+    def stinson(self, source_name, result_name):
+        res_img = pilgram.stinson(Image.open(source_name))
+        res_img.save(result_name)
+
+    def toaster(self, source_name, result_name):
+        res_img = pilgram.toaster(Image.open(source_name))
+        res_img.save(result_name)
+
+    def util(self, source_name, result_name):
+        res_img = pilgram.util(Image.open(source_name))
+        res_img.save(result_name)
+
+    def valencia(self, source_name, result_name):
+        res_img = pilgram.valencia(Image.open(source_name))
+        res_img.save(result_name)
+
+    def walden(self, source_name, result_name):
+        res_img = pilgram.walden(Image.open(source_name))
+        res_img.save(result_name)
+
+    def willow(self, source_name, result_name):
+        res_img = pilgram.willow(Image.open(source_name))
+        res_img.save(result_name)
+
+    def xpro2(self, source_name, result_name):
+        res_img = pilgram.xpro2(Image.open(source_name))
+        res_img.save(result_name)
