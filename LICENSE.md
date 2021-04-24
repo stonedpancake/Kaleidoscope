@@ -8,4 +8,5 @@ libraries - pilgram, Pillow, OpenCV, numpy, scipy
 Telegram API
 
 https://github.com/eternnoir/pyTelegramBotAPI.git
+
 libraries - pyTelegramBotAPI
