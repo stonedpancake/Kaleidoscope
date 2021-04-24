@@ -12,7 +12,7 @@ advanced_settings = ''
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    bot.send_message(message.chat.id, "Howdy, how are you doing?")
+    bot.send_message(message.chat.id, "Choose filter and send me a photo.")
 
 
 @bot.message_handler(commands=['effects'])
