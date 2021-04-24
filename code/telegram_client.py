@@ -48,7 +48,7 @@ def picked_effect(message):
 def beauty(message):
     file_info = bot.get_file(message.photo[len(message.photo) - 1].file_id)
     downloaded_file = bot.download_file(file_info.file_path)
-    src = '/Users/slavaderebchinskiy/Documents/python/Kaleidoscope/data/Photo.jpg'
+    src = '../data/Photo.jpg'
 
     with open(src, 'wb') as new_file:
         new_file.write(downloaded_file)
