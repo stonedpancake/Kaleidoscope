@@ -12,7 +12,8 @@ advanced_settings = ''
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
-    bot.send_message(message.chat.id, "Choose filter and send me a photo.")
+    bot.send_message(message.chat.id, "Hi, my name is Kaleidoscope. Type /effects to enable keyboard, then choose filter and send me a photo."
+                                      " \n\nP.S. Best filters: Negative, Toaster, Clarendon, Valencia, Earlybird, Sepia")
 
 
 @bot.message_handler(commands=['effects'])
@@ -22,20 +23,15 @@ def pick_the_effect(message):
     keyboard.row('Gray_Scale', 'White_Black', 'Bright')
     keyboard.row('Emboss', 'Contour', 'Edges')
     keyboard.row('Brannan', 'Brooklyn', 'Clarendon')
-    keyboard.row('Css', 'Earlybird', 'Gingham')
+    keyboard.row('Earlybird', 'Gingham')
     keyboard.row('Hudson', 'Inkwell', 'Kelvin')
     keyboard.row('Lark', 'Lofi', 'Maven')
     keyboard.row('Mayfair', 'Moon', 'Nashville')
     keyboard.row('Perpetua', 'Reyes', 'Rise')
     keyboard.row('Slumber', 'Stinson', 'Toaster')
-    keyboard.row('Util', 'Valencia', 'Walden')
+    keyboard.row('Valencia', 'Walden')
     keyboard.row('Willow', 'Xpro2', 'Aden')
-    bot.send_message(message.chat.id, 'Got it', reply_markup=keyboard)  # WIRED
-
-
-@bot.message_handler(commands=['advanced'])
-def advanced(message):
-    pass  # change brightness and coefficient
+    bot.send_message(message.chat.id, 'Keyboard has been updated.', reply_markup=keyboard)  # WIRED
 
 
 @bot.message_handler(content_types=["text"])

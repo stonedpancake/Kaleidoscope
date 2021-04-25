@@ -157,10 +157,6 @@ class PhotoFilters:
         res_img = pilgram.brooklyn(Image.open(source_name))
         res_img.save(result_name)
 
-    def css(self, source_name, result_name):
-        res_img = pilgram.css(Image.open(source_name))
-        res_img.save(result_name)
-
     def earlybird(self, source_name, result_name):
         res_img = pilgram.earlybird(Image.open(source_name))
         res_img.save(result_name)
@@ -223,10 +219,6 @@ class PhotoFilters:
 
     def toaster(self, source_name, result_name):
         res_img = pilgram.toaster(Image.open(source_name))
-        res_img.save(result_name)
-
-    def util(self, source_name, result_name):
-        res_img = pilgram.util(Image.open(source_name))
         res_img.save(result_name)
 
     def valencia(self, source_name, result_name):
