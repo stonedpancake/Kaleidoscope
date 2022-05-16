@@ -1,5 +1,3 @@
-import sys
-
 import telebot
 from kaleidoscope import PhotoFilters
 
